@@ -1,56 +1,49 @@
 <?php
- include 'Pessoa.php';
+  include("./Pessoa.php");
+  include("./connection.php");
+  
+  $titulo = "Hello World!";
 
-    $titulo = "Sai daqui meu chapa!";
-    $nomes = array("Joao", "Lucas", "Pedro");
+  $query = "SELECT * FROM contatos ORDER BY nome";
+  $select = $connection->prepare($query);
+  $result = $select->execute();
 
-    $pessoa1 = new Pessoa("Pedro","Lucas");
-    //echo $pessoa1->getNomeCompleto();
-
-    $pessoa2 = new Pessoa("H","S");
-    //echo $pessoa2->getNomeCompleto();
-
-    $pessoa3 = new Pessoa("A","Y");
-    //echo $pessoa2->getNomeCompleto();
-
-    $nomes_obj = [
-        $pessoa1,
-        $pessoa2,
-        $pessoa3,
-        $pessoa4,
-    ];
-    
-    $obj = "p1";
-
-    $nome = $_POST["nome"];
-    $sobrenome = $_POST["sobrenome"];
-    $data_nascimento = $_POST["data_nascimento"];
-
-    $pessoa = new Pessoa($nome, $sobrenome);
+  $rows = $select->fetchAll(PDO::FETCH_OBJ);
+  
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php echo $titulo ?></title>
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1> <?php echo $titulo ?></h1>
+  <div class="container">
 
-  <!-- <h2> <?php echo $pessoa1->getNomeCompleto(); ?></h2>
-    <h2> <?php echo $pessoa1->getNomeCompleto(); ?></h2> -->
+    <h1 class="text-center"> 
+      <?=$titulo ?> 
+      <small>
+        <?php echo date("d/m/Y H:i:s"); ?> 
+      </small> 
+    </h1>
 
-    <h3>
-        <ul>
-            <?php foreach($nomes_obj as $obj): ?>
-            <li> <?= $obj->getNomeCompleto(); ?></li>
-            <?php endforeach ?>
-        </ul>
-    </h3>
+    <h3>Lista de pessoas</h3>
+    <ul>
+      <?php foreach($rows as $contato): ?>
+     <li>
+        <?php echo $contato->nome?> :
+        <?php echo $contato->email?> -
+        <?php echo $contato->fone?>
+     </li>
+     <?php endforeach ?>
+    </ul>
+
+    <a class="btn btn-primary" href="\cadastro.php" role="button">Cadastro</a>
+
+  </div>
 </body>
 </html>
-
-    
-    

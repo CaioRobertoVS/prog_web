@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
+  <title>Alteração de Cadastro</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h2>Cadastro de pessoa</h2>
+      <h2>Alteração de pessoa</h2>
     </div>
 
     <form action="cadastro_salvar.php" method="post">
       <div class="row">
         <div class="col">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" name="f_nome" required>
+            <label for="">O que deseja alterar?</label>
+            <input type="text" class="form-control" name="f_campo" required>
         </div>
         <div class="col">
-            <label for="">Email</label>
-            <input type="email" class="form-control" name="f_email" required>
+            <label for="">Qual valor você quer alterar?</label>
+            <input type="text" class="form-control" name="f_valor" required>
         </div>
         <div class="col">
-            <label for="">Fone</label>
-            <input type="fone" class="form-control" name="f_fone" data-mask="(00) 00000-0000" required>
+            <label for="">Qual o novo valor que você deseja?</label>
+            <input type="text" class="form-control" name="f_novo_valor" required>
         </div>
       </div>
       <div class="row mt-3">
